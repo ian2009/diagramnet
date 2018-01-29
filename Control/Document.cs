@@ -649,6 +649,18 @@ namespace Dalssoft.DiagramNet
 			}
 		}
 
+        Image __Background = null;
+        [System.ComponentModel.DefaultValue(null)]
+        public Image Background
+        {
+            get { return __Background; }
+            set
+            {
+                __Background = value;
+                OnPropertyChanged(new EventArgs());
+            }
+        }
+
 		#endregion
 
 		#region Draw Methods
@@ -736,12 +748,15 @@ namespace Dalssoft.DiagramNet
 			if (windowSize.Height / zoom > maxY)
 				maxY = (int)(windowSize.Height / zoom);
 
-			for(int i = 0; i < maxX; i += gridSize.Width)
+            int stepX = (int)(gridSize.Width * zoom);
+            int stepY = (int)(gridSize.Height * zoom);
+
+			for(int i = 0; i < maxX; i += stepX)
 			{
 				g.DrawLine(p, i, 0, i, maxY);
 			}
 
-			for(int i = 0; i < maxY; i += gridSize.Height)
+			for(int i = 0; i < maxY; i += stepY)
 			{
 				g.DrawLine(p, 0, i, maxX, i);
 			}

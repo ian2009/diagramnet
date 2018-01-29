@@ -216,13 +216,27 @@ namespace Dalssoft.DiagramNet
             GraphicsContainer gc;
             Matrix mtx;
             g.PageUnit = GraphicsUnit.Pixel;
+
+            Point scrollPoint = this.AutoScrollPosition;
+            g.TranslateTransform(scrollPoint.X, scrollPoint.Y);
+
             mtx = g.Transform;
             gc = g.BeginContainer();
 
             Rectangle clipRectangle = Gsc2Goc(e.ClipRectangle);
 
+#if DrawGrid
             document.DrawGrid(g, clipRectangle);
-
+#else
+            if (document.Background != null)
+            {
+                float zoomNum = document.Zoom;
+                int imgW = (int)(document.Background.Width * zoomNum);
+                int imgH = (int)(document.Background.Height * zoomNum);
+                //g.DrawImage(document.Background, clipRectangle.X, clipRectangle.Y, clipRectangle.Width, clipRectangle.Height);
+                g.DrawImage(document.Background, 0, 0, imgW, imgH);
+            }
+#endif
             g.EndContainer(gc);
             g.Transform = mtx;
 
@@ -1130,6 +1144,20 @@ namespace Dalssoft.DiagramNet
 			document.AppearancePropertyChanged+=new EventHandler(document_AppearancePropertyChanged);
 			document.ElementPropertyChanged += new EventHandler(document_ElementPropertyChanged);
 			document.ElementSelection += new Document.ElementSelectionEventHandler(document_ElementSelection);
-		}
-	}
+        }
+
+        #region BackgroundImage
+        Image __Background = null;
+        [DefaultValue(null)]
+        public Image Background
+        {
+            get { return __Background; }
+            set
+            {
+                __Background = value;
+                //OnAppearanceChanged(new EventArgs());
+            }
+        }
+        #endregion
+    }
 }

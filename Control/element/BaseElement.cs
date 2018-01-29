@@ -16,9 +16,9 @@ namespace Dalssoft.DiagramNet
 		protected Point location;
 		protected Size size;
 		protected bool visible = true;
-		protected Color borderColor = Color.Black;
+		protected Color borderColor = Color.Red;
 		protected int borderWidth = 1;
-		protected int opacity = 100;
+		protected int opacity = 20;
 		internal protected Rectangle invalidateRec = Rectangle.Empty;
 		internal protected bool IsInvalidated = true;
 
