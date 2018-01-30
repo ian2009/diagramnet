@@ -1,3 +1,5 @@
+//#define DrawGrid
+
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -219,7 +221,7 @@ namespace Dalssoft.DiagramNet
 
             Point scrollPoint = this.AutoScrollPosition;
             g.TranslateTransform(scrollPoint.X, scrollPoint.Y);
-
+            
             mtx = g.Transform;
             gc = g.BeginContainer();
 

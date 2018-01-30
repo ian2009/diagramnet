@@ -359,6 +359,7 @@ namespace Dalssoft.DiagramNet
 
 		internal override void Draw(System.Drawing.Graphics g)
 		{
+#if DrawLabel
 			Rectangle r = GetUnsignedRectangle();
 			
 			g.FillRectangle(GetBrushBackColor(r), r);
@@ -366,6 +367,7 @@ namespace Dalssoft.DiagramNet
 			g.DrawString(text, font, b, (RectangleF) r, format);
 			DrawBorder(g, r);
 			b.Dispose();
+#endif
 		}
 
 		protected virtual void DrawBorder(Graphics g, Rectangle r)

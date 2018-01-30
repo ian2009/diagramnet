@@ -98,7 +98,7 @@ namespace Dalssoft.TestForm
 		private System.Windows.Forms.MenuItem TbCommentBox;
         private MenuItem menuSaveas;
         private MenuItem TbCommentBoxNode;
-        private ToolBarButton btnSelect;
+        private ToolBarButton btnRectangle;
         private System.ComponentModel.IContainer components;
 
 		public Form1()
@@ -178,7 +178,6 @@ namespace Dalssoft.TestForm
             this.btnBack = new System.Windows.Forms.ToolBarButton();
             this.btnMoveUp = new System.Windows.Forms.ToolBarButton();
             this.btnMoveDown = new System.Windows.Forms.ToolBarButton();
-            this.btnSelect = new System.Windows.Forms.ToolBarButton();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.mnuFile = new System.Windows.Forms.MenuItem();
@@ -214,13 +213,14 @@ namespace Dalssoft.TestForm
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.mnuAbout = new System.Windows.Forms.MenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.designer1 = new Dalssoft.DiagramNet.Designer();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnRectangle = new System.Windows.Forms.ToolBarButton();
+            this.designer1 = new Dalssoft.DiagramNet.Designer();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -250,7 +250,7 @@ namespace Dalssoft.TestForm
             this.btnBack,
             this.btnMoveUp,
             this.btnMoveDown,
-            this.btnSelect});
+            this.btnRectangle});
             this.toolBar1.Divider = false;
             this.toolBar1.DropDownArrows = true;
             this.toolBar1.ImageList = this.imageList1;
@@ -322,7 +322,6 @@ namespace Dalssoft.TestForm
             this.btnSize.Style = System.Windows.Forms.ToolBarButtonStyle.ToggleButton;
             this.btnSize.Tag = "Size";
             this.btnSize.ToolTipText = "Size";
-            this.btnSize.Visible = false;
             // 
             // btnAdd
             // 
@@ -387,7 +386,6 @@ namespace Dalssoft.TestForm
             this.btnConnect.Style = System.Windows.Forms.ToolBarButtonStyle.DropDownButton;
             this.btnConnect.Tag = "Connect";
             this.btnConnect.ToolTipText = "Connect";
-            this.btnConnect.Visible = false;
             // 
             // contextMenu2
             // 
@@ -524,12 +522,6 @@ namespace Dalssoft.TestForm
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Tag = "MoveDown";
             this.btnMoveDown.ToolTipText = "Move Down";
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.ImageIndex = 1;
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Tag = "Rectangle";
             // 
             // imageList1
             // 
@@ -786,35 +778,13 @@ namespace Dalssoft.TestForm
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(696, 296);
+            this.panel1.Size = new System.Drawing.Size(696, 338);
             this.panel1.TabIndex = 2;
-            // 
-            // designer1
-            // 
-            this.designer1.AutoScroll = true;
-            this.designer1.AutoScrollMinSize = new System.Drawing.Size(100, 100);
-            this.designer1.BackColor = System.Drawing.SystemColors.Window;
-            this.designer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.designer1.Location = new System.Drawing.Point(0, 0);
-            this.designer1.Name = "designer1";
-            this.designer1.Size = new System.Drawing.Size(468, 189);
-            this.designer1.TabIndex = 6;
-            this.designer1.ElementClick += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementClick);
-            this.designer1.ElementMouseDown += new Dalssoft.DiagramNet.Designer.ElementMouseEventHandler(this.designer1_ElementMouseDown);
-            this.designer1.ElementMouseUp += new Dalssoft.DiagramNet.Designer.ElementMouseEventHandler(this.designer1_ElementMouseUp);
-            this.designer1.ElementMoving += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementMoving);
-            this.designer1.ElementMoved += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementMoved);
-            this.designer1.ElementResizing += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementResizing);
-            this.designer1.ElementResized += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementResized);
-            this.designer1.ElementConnecting += new Dalssoft.DiagramNet.Designer.ElementConnectEventHandler(this.designer1_ElementConnecting);
-            this.designer1.ElementConnected += new Dalssoft.DiagramNet.Designer.ElementConnectEventHandler(this.designer1_ElementConnected);
-            this.designer1.ElementSelection += new Dalssoft.DiagramNet.Designer.ElementSelectionEventHandler(this.designer1_ElementSelection);
-            this.designer1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.designer1_MouseUp);
             // 
             // splitter2
             // 
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 189);
+            this.splitter2.Location = new System.Drawing.Point(0, 231);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(468, 3);
             this.splitter2.TabIndex = 5;
@@ -824,7 +794,7 @@ namespace Dalssoft.TestForm
             // 
             this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtLog.Location = new System.Drawing.Point(0, 192);
+            this.txtLog.Location = new System.Drawing.Point(0, 234);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
@@ -839,7 +809,7 @@ namespace Dalssoft.TestForm
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
             this.splitter1.Location = new System.Drawing.Point(468, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(4, 296);
+            this.splitter1.Size = new System.Drawing.Size(4, 338);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
@@ -849,7 +819,7 @@ namespace Dalssoft.TestForm
             this.propertyGrid1.LineColor = System.Drawing.SystemColors.ScrollBar;
             this.propertyGrid1.Location = new System.Drawing.Point(472, 0);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(224, 296);
+            this.propertyGrid1.Size = new System.Drawing.Size(224, 338);
             this.propertyGrid1.TabIndex = 0;
             // 
             // openFileDialog1
@@ -857,10 +827,39 @@ namespace Dalssoft.TestForm
             this.openFileDialog1.DefaultExt = "*.dgn";
             this.openFileDialog1.RestoreDirectory = true;
             // 
+            // btnRectangle
+            // 
+            this.btnRectangle.ImageIndex = 1;
+            this.btnRectangle.Name = "btnRectangle";
+            this.btnRectangle.Tag = "Rectangle";
+            this.btnRectangle.ToolTipText = "Add Rectangle";
+            // 
+            // designer1
+            // 
+            this.designer1.AutoScroll = true;
+            this.designer1.AutoScrollMinSize = new System.Drawing.Size(100, 100);
+            this.designer1.BackColor = System.Drawing.SystemColors.Window;
+            this.designer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.designer1.Location = new System.Drawing.Point(0, 0);
+            this.designer1.Name = "designer1";
+            this.designer1.Size = new System.Drawing.Size(468, 231);
+            this.designer1.TabIndex = 6;
+            this.designer1.ElementClick += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementClick);
+            this.designer1.ElementMouseDown += new Dalssoft.DiagramNet.Designer.ElementMouseEventHandler(this.designer1_ElementMouseDown);
+            this.designer1.ElementMouseUp += new Dalssoft.DiagramNet.Designer.ElementMouseEventHandler(this.designer1_ElementMouseUp);
+            this.designer1.ElementMoving += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementMoving);
+            this.designer1.ElementMoved += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementMoved);
+            this.designer1.ElementResizing += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementResizing);
+            this.designer1.ElementResized += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementResized);
+            this.designer1.ElementConnecting += new Dalssoft.DiagramNet.Designer.ElementConnectEventHandler(this.designer1_ElementConnecting);
+            this.designer1.ElementConnected += new Dalssoft.DiagramNet.Designer.ElementConnectEventHandler(this.designer1_ElementConnected);
+            this.designer1.ElementSelection += new Dalssoft.DiagramNet.Designer.ElementSelectionEventHandler(this.designer1_ElementSelection);
+            this.designer1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.designer1_MouseUp);
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(696, 322);
+            this.ClientSize = new System.Drawing.Size(696, 364);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolBar1);
             this.Menu = this.mainMenu1;
@@ -1024,7 +1023,7 @@ namespace Dalssoft.TestForm
 		{
 #if ORG_CODE
             openFileDialog1.FileName = FileName;
-            openFileDialog1.Filter = "全部dgn文件(*.dgn)|*.dgn|全部文件(*.*)|*.*";
+            openFileDialog1.Filter = "Design(*.dgn)|*.dgn|All(*.*)|*.*";
             openFileDialog1.DefaultExt = ".dgn";
             if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
 			{
@@ -1236,26 +1235,29 @@ namespace Dalssoft.TestForm
 			
 			string btn = (string) e.Button.Tag;
 			
-			if (btn == "Open") File_Open();
-			if (btn == "Save") File_Save();
-			
-			if (btn == "Size") Action_Size();
-			//if (btn == "Add")
-			if (btn == "Delete") Action_Delete();
-			if (btn == "Connect") Action_Connect();
+            switch (btn)
+            {
+                case "Open": File_Open(); break;
+                case "Save": File_Save(); break;
 
-			if (btn == "Undo") Edit_Undo();
-			if (btn == "Redo") Edit_Redo();
+                case "Size": Action_Size(); break;
+			    //case  "Add":
+                case "Delete": Action_Delete(); break;
+                case "Connect": Action_Connect(); break;
 
-			if (btn == "Front") Order_BringToFront();
-			if (btn == "Back") Order_SendToBack();
-			if (btn == "MoveUp") Order_MoveUp();
-			if (btn == "MoveDown") Order_MoveDown();
+                case "Undo": Edit_Undo(); break;
+                case "Redo": Edit_Redo(); break;
 
-			if (btn == "Cut") Clipboard_Cut();
-			if (btn == "Copy") Clipboard_Copy();
-			if (btn == "Paste") Clipboard_Paste();
-            if (btn == "Rectangle") mnuTbRectangle_Click(null, null);
+                case "Front": Order_BringToFront(); break;
+                case "Back": Order_SendToBack(); break;
+                case "MoveUp": Order_MoveUp(); break;
+                case "MoveDown": Order_MoveDown(); break;
+
+                case "Cut": Clipboard_Cut(); break;
+                case "Copy": Clipboard_Copy(); break;
+                case "Paste": Clipboard_Paste(); break;
+                case "Rectangle": mnuTbRectangle_Click(null, null); break;
+        }
 		}
 
 		private void mnuTbRectangle_Click(object sender, System.EventArgs e)
