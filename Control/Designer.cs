@@ -15,7 +15,7 @@ namespace Dalssoft.DiagramNet
 {
     public class Designer : System.Windows.Forms.UserControl
     {
-        private System.ComponentModel.IContainer components;
+        private System.ComponentModel.IContainer components = null;
 
         #region Designer Control Initialization
         //Document

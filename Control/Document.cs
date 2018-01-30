@@ -751,7 +751,7 @@ namespace Dalssoft.DiagramNet
             int stepX = (int)(gridSize.Width * zoom);
             int stepY = (int)(gridSize.Height * zoom);
 
-			for(int i = 0; i < maxX; i += stepX)
+            for(int i = 0; i < maxX; i += stepX)
 			{
 				g.DrawLine(p, i, 0, i, maxY);
 			}

@@ -90,8 +90,7 @@ namespace Dalssoft.TestForm
 		private System.Windows.Forms.MenuItem mnuZoom_100;
 		private System.Windows.Forms.MenuItem mnuZoom_150;
 		private System.Windows.Forms.MenuItem mnuZoom_200;
-		private System.Windows.Forms.Splitter splitter2;
-		private System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.Splitter splitter2;
 		private System.Windows.Forms.MenuItem mnuShowDebugLog;
 		private System.Windows.Forms.MenuItem menuItem1;
 		private Dalssoft.DiagramNet.Designer designer1;
@@ -99,6 +98,12 @@ namespace Dalssoft.TestForm
         private MenuItem menuSaveas;
         private MenuItem TbCommentBoxNode;
         private ToolBarButton btnRectangle;
+        private TabControl tab;
+        private TabPage tabLog;
+        private TextBox txtLog;
+        private TabPage tabConsole;
+        private ConsoleControl.ConsoleControl ctrlConsole;
+        private MenuItem mnuRunConsole;
         private System.ComponentModel.IContainer components;
 
 		public Form1()
@@ -178,6 +183,7 @@ namespace Dalssoft.TestForm
             this.btnBack = new System.Windows.Forms.ToolBarButton();
             this.btnMoveUp = new System.Windows.Forms.ToolBarButton();
             this.btnMoveDown = new System.Windows.Forms.ToolBarButton();
+            this.btnRectangle = new System.Windows.Forms.ToolBarButton();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.mnuFile = new System.Windows.Forms.MenuItem();
@@ -213,15 +219,22 @@ namespace Dalssoft.TestForm
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.mnuAbout = new System.Windows.Forms.MenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.tab = new System.Windows.Forms.TabControl();
+            this.tabLog = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
+            this.tabConsole = new System.Windows.Forms.TabPage();
+            this.designer1 = new Dalssoft.DiagramNet.Designer();
+            this.splitter2 = new System.Windows.Forms.Splitter();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnRectangle = new System.Windows.Forms.ToolBarButton();
-            this.designer1 = new Dalssoft.DiagramNet.Designer();
+            this.mnuRunConsole = new System.Windows.Forms.MenuItem();
+            this.ctrlConsole = new ConsoleControl.ConsoleControl();
             this.panel1.SuspendLayout();
+            this.tab.SuspendLayout();
+            this.tabLog.SuspendLayout();
+            this.tabConsole.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolBar1
@@ -523,6 +536,13 @@ namespace Dalssoft.TestForm
             this.btnMoveDown.Tag = "MoveDown";
             this.btnMoveDown.ToolTipText = "Move Down";
             // 
+            // btnRectangle
+            // 
+            this.btnRectangle.ImageIndex = 1;
+            this.btnRectangle.Name = "btnRectangle";
+            this.btnRectangle.Tag = "Rectangle";
+            this.btnRectangle.ToolTipText = "Add Rectangle";
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -608,7 +628,8 @@ namespace Dalssoft.TestForm
             this.mnuAdd,
             this.mnuConnect,
             this.menuItem20,
-            this.mnuOrder});
+            this.mnuOrder,
+            this.mnuRunConsole});
             this.mnuEdit.Text = "&Edit";
             // 
             // mnuUndo
@@ -770,69 +791,65 @@ namespace Dalssoft.TestForm
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tab);
             this.panel1.Controls.Add(this.designer1);
             this.panel1.Controls.Add(this.splitter2);
-            this.panel1.Controls.Add(this.txtLog);
             this.panel1.Controls.Add(this.splitter1);
             this.panel1.Controls.Add(this.propertyGrid1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(696, 338);
+            this.panel1.Size = new System.Drawing.Size(696, 388);
             this.panel1.TabIndex = 2;
             // 
-            // splitter2
+            // tab
             // 
-            this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 231);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(468, 3);
-            this.splitter2.TabIndex = 5;
-            this.splitter2.TabStop = false;
+            this.tab.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tab.Controls.Add(this.tabLog);
+            this.tab.Controls.Add(this.tabConsole);
+            this.tab.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tab.Location = new System.Drawing.Point(0, 199);
+            this.tab.Name = "tab";
+            this.tab.SelectedIndex = 0;
+            this.tab.Size = new System.Drawing.Size(468, 186);
+            this.tab.TabIndex = 7;
+            // 
+            // tabLog
+            // 
+            this.tabLog.Controls.Add(this.txtLog);
+            this.tabLog.Location = new System.Drawing.Point(4, 25);
+            this.tabLog.Name = "tabLog";
+            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLog.Size = new System.Drawing.Size(460, 157);
+            this.tabLog.TabIndex = 0;
+            this.tabLog.Text = "Log";
+            this.tabLog.UseVisualStyleBackColor = true;
             // 
             // txtLog
             // 
+            this.txtLog.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtLog.Location = new System.Drawing.Point(0, 234);
+            this.txtLog.Location = new System.Drawing.Point(3, 3);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(468, 104);
-            this.txtLog.TabIndex = 4;
-            this.txtLog.Text = "Log:";
+            this.txtLog.Size = new System.Drawing.Size(454, 151);
+            this.txtLog.TabIndex = 5;
+            this.txtLog.Text = "Running log ... ...";
             this.txtLog.Visible = false;
             // 
-            // splitter1
+            // tabConsole
             // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter1.Location = new System.Drawing.Point(468, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(4, 338);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.propertyGrid1.LineColor = System.Drawing.SystemColors.ScrollBar;
-            this.propertyGrid1.Location = new System.Drawing.Point(472, 0);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(224, 338);
-            this.propertyGrid1.TabIndex = 0;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.DefaultExt = "*.dgn";
-            this.openFileDialog1.RestoreDirectory = true;
-            // 
-            // btnRectangle
-            // 
-            this.btnRectangle.ImageIndex = 1;
-            this.btnRectangle.Name = "btnRectangle";
-            this.btnRectangle.Tag = "Rectangle";
-            this.btnRectangle.ToolTipText = "Add Rectangle";
+            this.tabConsole.Controls.Add(this.ctrlConsole);
+            this.tabConsole.Location = new System.Drawing.Point(4, 25);
+            this.tabConsole.Name = "tabConsole";
+            this.tabConsole.Padding = new System.Windows.Forms.Padding(3);
+            this.tabConsole.Size = new System.Drawing.Size(460, 157);
+            this.tabConsole.TabIndex = 1;
+            this.tabConsole.Text = "Console";
+            this.tabConsole.UseVisualStyleBackColor = true;
             // 
             // designer1
             // 
@@ -842,7 +859,7 @@ namespace Dalssoft.TestForm
             this.designer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.designer1.Location = new System.Drawing.Point(0, 0);
             this.designer1.Name = "designer1";
-            this.designer1.Size = new System.Drawing.Size(468, 231);
+            this.designer1.Size = new System.Drawing.Size(468, 385);
             this.designer1.TabIndex = 6;
             this.designer1.ElementClick += new Dalssoft.DiagramNet.Designer.ElementEventHandler(this.designer1_ElementClick);
             this.designer1.ElementMouseDown += new Dalssoft.DiagramNet.Designer.ElementMouseEventHandler(this.designer1_ElementMouseDown);
@@ -856,10 +873,63 @@ namespace Dalssoft.TestForm
             this.designer1.ElementSelection += new Dalssoft.DiagramNet.Designer.ElementSelectionEventHandler(this.designer1_ElementSelection);
             this.designer1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.designer1_MouseUp);
             // 
+            // splitter2
+            // 
+            this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter2.Location = new System.Drawing.Point(0, 385);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(468, 3);
+            this.splitter2.TabIndex = 5;
+            this.splitter2.TabStop = false;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter1.Location = new System.Drawing.Point(468, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(4, 388);
+            this.splitter1.TabIndex = 1;
+            this.splitter1.TabStop = false;
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.propertyGrid1.LineColor = System.Drawing.SystemColors.ScrollBar;
+            this.propertyGrid1.Location = new System.Drawing.Point(472, 0);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(224, 388);
+            this.propertyGrid1.TabIndex = 0;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "*.dgn";
+            this.openFileDialog1.RestoreDirectory = true;
+            // 
+            // mnuRunConsole
+            // 
+            this.mnuRunConsole.Index = 13;
+            this.mnuRunConsole.Text = "Run Console";
+            this.mnuRunConsole.Click += new System.EventHandler(this.mnuRunConsole_Click);
+            // 
+            // ctrlConsole
+            // 
+            this.ctrlConsole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlConsole.BackColor = System.Drawing.Color.White;
+            this.ctrlConsole.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ctrlConsole.IsInputEnabled = true;
+            this.ctrlConsole.Location = new System.Drawing.Point(3, 3);
+            this.ctrlConsole.Name = "ctrlConsole";
+            this.ctrlConsole.SendKeyboardCommandsToProcess = false;
+            this.ctrlConsole.ShowDiagnostics = false;
+            this.ctrlConsole.Size = new System.Drawing.Size(451, 151);
+            this.ctrlConsole.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(696, 364);
+            this.ClientSize = new System.Drawing.Size(696, 414);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolBar1);
             this.Menu = this.mainMenu1;
@@ -868,7 +938,10 @@ namespace Dalssoft.TestForm
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tab.ResumeLayout(false);
+            this.tabLog.ResumeLayout(false);
+            this.tabLog.PerformLayout();
+            this.tabConsole.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1466,6 +1539,14 @@ namespace Dalssoft.TestForm
         private void TbCommentBoxNode_Click(object sender, EventArgs e)
         {
             Action_Add(ElementType.CommentBoxNode);
+        }
+
+        private void mnuRunConsole_Click(object sender, EventArgs e)
+        {
+            if (ctrlConsole.IsProcessRunning == false)
+            {
+                ctrlConsole.StartProcess("cmd", null);
+            }
         }
     }
 }
