@@ -6,95 +6,96 @@ using System.Windows.Forms;
 using System.Data;
 using System.IO;
 using Dalssoft.DiagramNet;
+using System.Diagnostics;
 
 namespace Dalssoft.TestForm
 {
-	/// <summary>
-	/// Summary description for Form1.
-	/// </summary>
-	public class Form1 : System.Windows.Forms.Form
-	{
-		private bool changeDocumentProp = true;
+    /// <summary>
+    /// Summary description for Form1.
+    /// </summary>
+    public class Form1 : System.Windows.Forms.Form
+    {
+        private bool changeDocumentProp = true;
 
-		private System.Windows.Forms.ToolBar toolBar1;
-		private System.Windows.Forms.ToolBarButton btnSize;
-		private System.Windows.Forms.ToolBarButton btnAdd;
-		private System.Windows.Forms.ToolBarButton btnDelete;
-		private System.Windows.Forms.ToolBarButton btnConnect;
-		private System.Windows.Forms.ImageList imageList1;
-		private System.Windows.Forms.ContextMenu contextMenu1;
-		private System.Windows.Forms.ToolBarButton sep1;
-		private System.Windows.Forms.ToolBarButton btnSave;
-		private System.Windows.Forms.ToolBarButton btnOpen;
-		private System.Windows.Forms.ToolBarButton sep2;
-		private System.Windows.Forms.ToolBarButton btnUndo;
-		private System.Windows.Forms.ToolBarButton btnRedo;
-		private System.Windows.Forms.ToolBarButton sep3;
-		private System.Windows.Forms.ToolBarButton btnFront;
-		private System.Windows.Forms.ToolBarButton btnBack;
-		private System.Windows.Forms.ToolBarButton btnMoveUp;
-		private System.Windows.Forms.ToolBarButton btnMoveDown;
-		private System.Windows.Forms.MainMenu mainMenu1;
-		private System.Windows.Forms.MenuItem menuItem11;
-		private System.Windows.Forms.MenuItem menuItem20;
-		private System.Windows.Forms.MenuItem menuItem26;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.PropertyGrid propertyGrid1;
-		private System.Windows.Forms.Splitter splitter1;
-		private System.Windows.Forms.MenuItem mnuFile;
-		private System.Windows.Forms.MenuItem mnuOpen;
-		private System.Windows.Forms.MenuItem mnuSave;
-		private System.Windows.Forms.MenuItem mnuExit;
-		private System.Windows.Forms.MenuItem mnuEdit;
-		private System.Windows.Forms.MenuItem mnuRedo;
-		private System.Windows.Forms.MenuItem mnuAdd;
-		private System.Windows.Forms.MenuItem mnuRectangle;
-		private System.Windows.Forms.MenuItem mnuElipse;
-		private System.Windows.Forms.MenuItem mnuRectangleNode;
-		private System.Windows.Forms.MenuItem mnuElipseNode;
-		private System.Windows.Forms.MenuItem mnuDelete;
-		private System.Windows.Forms.MenuItem mnuConnect;
-		private System.Windows.Forms.MenuItem mnuOrder;
-		private System.Windows.Forms.MenuItem mnuBringToFront;
-		private System.Windows.Forms.MenuItem mnuSendToBack;
-		private System.Windows.Forms.MenuItem mnuMoveUp;
-		private System.Windows.Forms.MenuItem mnuMoveDown;
-		private System.Windows.Forms.MenuItem mnuHelp;
-		private System.Windows.Forms.MenuItem mnuAbout;
-		private System.Windows.Forms.MenuItem mnuSize;
-		private System.Windows.Forms.MenuItem mnuTbRectangle;
-		private System.Windows.Forms.MenuItem mnuTbElipse;
-		private System.Windows.Forms.MenuItem mnuTbRectangleNode;
-		private System.Windows.Forms.MenuItem mnuTbElipseNode;
-		private System.Windows.Forms.OpenFileDialog openFileDialog1;
-		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-		private System.Windows.Forms.MenuItem mnuUndo;
-		private System.Windows.Forms.ContextMenu contextMenu2;
-		private System.Windows.Forms.MenuItem mnuTbStraightLink;
-		private System.Windows.Forms.MenuItem mnuTbRightAngleLink;
-		private System.Windows.Forms.MenuItem menuItem3;
-		private System.Windows.Forms.MenuItem mnuCut;
-		private System.Windows.Forms.MenuItem mnuPaste;
-		private System.Windows.Forms.MenuItem mnuCopy;
-		private System.Windows.Forms.ToolBarButton sep4;
-		private System.Windows.Forms.ToolBarButton btnCut;
-		private System.Windows.Forms.ToolBarButton btnCopy;
-		private System.Windows.Forms.ToolBarButton btnPaste;
-		private System.Windows.Forms.ToolBarButton sep5;
-		private System.Windows.Forms.ToolBarButton btnZoom;
-		private System.Windows.Forms.ContextMenu contextMenu_Zoom;
-		private System.Windows.Forms.MenuItem mnuZoom_10;
-		private System.Windows.Forms.MenuItem mnuZoom_25;
-		private System.Windows.Forms.MenuItem mnuZoom_50;
-		private System.Windows.Forms.MenuItem mnuZoom_75;
-		private System.Windows.Forms.MenuItem mnuZoom_100;
-		private System.Windows.Forms.MenuItem mnuZoom_150;
-		private System.Windows.Forms.MenuItem mnuZoom_200;
+        private System.Windows.Forms.ToolBar toolBar1;
+        private System.Windows.Forms.ToolBarButton btnSize;
+        private System.Windows.Forms.ToolBarButton btnAdd;
+        private System.Windows.Forms.ToolBarButton btnDelete;
+        private System.Windows.Forms.ToolBarButton btnConnect;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ContextMenu contextMenu1;
+        private System.Windows.Forms.ToolBarButton sep1;
+        private System.Windows.Forms.ToolBarButton btnSave;
+        private System.Windows.Forms.ToolBarButton btnOpen;
+        private System.Windows.Forms.ToolBarButton sep2;
+        private System.Windows.Forms.ToolBarButton btnUndo;
+        private System.Windows.Forms.ToolBarButton btnRedo;
+        private System.Windows.Forms.ToolBarButton sep3;
+        private System.Windows.Forms.ToolBarButton btnFront;
+        private System.Windows.Forms.ToolBarButton btnBack;
+        private System.Windows.Forms.ToolBarButton btnMoveUp;
+        private System.Windows.Forms.ToolBarButton btnMoveDown;
+        private System.Windows.Forms.MainMenu mainMenu1;
+        private System.Windows.Forms.MenuItem menuItem11;
+        private System.Windows.Forms.MenuItem menuItem20;
+        private System.Windows.Forms.MenuItem menuItem26;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.MenuItem mnuFile;
+        private System.Windows.Forms.MenuItem mnuOpen;
+        private System.Windows.Forms.MenuItem mnuSave;
+        private System.Windows.Forms.MenuItem mnuExit;
+        private System.Windows.Forms.MenuItem mnuEdit;
+        private System.Windows.Forms.MenuItem mnuRedo;
+        private System.Windows.Forms.MenuItem mnuAdd;
+        private System.Windows.Forms.MenuItem mnuRectangle;
+        private System.Windows.Forms.MenuItem mnuElipse;
+        private System.Windows.Forms.MenuItem mnuRectangleNode;
+        private System.Windows.Forms.MenuItem mnuElipseNode;
+        private System.Windows.Forms.MenuItem mnuDelete;
+        private System.Windows.Forms.MenuItem mnuConnect;
+        private System.Windows.Forms.MenuItem mnuOrder;
+        private System.Windows.Forms.MenuItem mnuBringToFront;
+        private System.Windows.Forms.MenuItem mnuSendToBack;
+        private System.Windows.Forms.MenuItem mnuMoveUp;
+        private System.Windows.Forms.MenuItem mnuMoveDown;
+        private System.Windows.Forms.MenuItem mnuHelp;
+        private System.Windows.Forms.MenuItem mnuAbout;
+        private System.Windows.Forms.MenuItem mnuSize;
+        private System.Windows.Forms.MenuItem mnuTbRectangle;
+        private System.Windows.Forms.MenuItem mnuTbElipse;
+        private System.Windows.Forms.MenuItem mnuTbRectangleNode;
+        private System.Windows.Forms.MenuItem mnuTbElipseNode;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.MenuItem mnuUndo;
+        private System.Windows.Forms.ContextMenu contextMenu2;
+        private System.Windows.Forms.MenuItem mnuTbStraightLink;
+        private System.Windows.Forms.MenuItem mnuTbRightAngleLink;
+        private System.Windows.Forms.MenuItem menuItem3;
+        private System.Windows.Forms.MenuItem mnuCut;
+        private System.Windows.Forms.MenuItem mnuPaste;
+        private System.Windows.Forms.MenuItem mnuCopy;
+        private System.Windows.Forms.ToolBarButton sep4;
+        private System.Windows.Forms.ToolBarButton btnCut;
+        private System.Windows.Forms.ToolBarButton btnCopy;
+        private System.Windows.Forms.ToolBarButton btnPaste;
+        private System.Windows.Forms.ToolBarButton sep5;
+        private System.Windows.Forms.ToolBarButton btnZoom;
+        private System.Windows.Forms.ContextMenu contextMenu_Zoom;
+        private System.Windows.Forms.MenuItem mnuZoom_10;
+        private System.Windows.Forms.MenuItem mnuZoom_25;
+        private System.Windows.Forms.MenuItem mnuZoom_50;
+        private System.Windows.Forms.MenuItem mnuZoom_75;
+        private System.Windows.Forms.MenuItem mnuZoom_100;
+        private System.Windows.Forms.MenuItem mnuZoom_150;
+        private System.Windows.Forms.MenuItem mnuZoom_200;
         private System.Windows.Forms.Splitter splitter2;
-		private System.Windows.Forms.MenuItem mnuShowDebugLog;
-		private System.Windows.Forms.MenuItem menuItem1;
-		private Dalssoft.DiagramNet.Designer designer1;
-		private System.Windows.Forms.MenuItem TbCommentBox;
+        private System.Windows.Forms.MenuItem mnuShowDebugLog;
+        private System.Windows.Forms.MenuItem menuItem1;
+        private Dalssoft.DiagramNet.Designer designer1;
+        private System.Windows.Forms.MenuItem TbCommentBox;
         private MenuItem menuSaveas;
         private MenuItem TbCommentBoxNode;
         private ToolBarButton btnRectangle;
@@ -106,41 +107,41 @@ namespace Dalssoft.TestForm
         private MenuItem mnuRunConsole;
         private System.ComponentModel.IContainer components;
 
-		public Form1()
-		{
+        public Form1()
+        {
 
-			//
-			// Required for Windows Form Designer support
-			//
-			InitializeComponent();
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
 
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
-		}
+            //
+            // TODO: Add any constructor code after InitializeComponent call
+            //
+        }
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if (components != null) 
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolBar1 = new System.Windows.Forms.ToolBar();
@@ -913,8 +914,8 @@ namespace Dalssoft.TestForm
             // 
             // ctrlConsole
             // 
-            this.ctrlConsole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ctrlConsole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlConsole.BackColor = System.Drawing.Color.White;
             this.ctrlConsole.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -945,155 +946,155 @@ namespace Dalssoft.TestForm
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		#endregion
+        }
+        #endregion
 
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		static void Main() 
-		{
-			Application.EnableVisualStyles();
-			Application.DoEvents();
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.DoEvents();
 
-			Application.Run(new Form1());
-		}
+            Application.Run(new Form1());
+        }
 
-		#region Functions
-		private void Edit_UpdateUndoRedoEnable()
-		{
-			mnuUndo.Enabled = designer1.CanUndo;
-			btnUndo.Enabled = designer1.CanUndo;
-			mnuRedo.Enabled = designer1.CanRedo;
-			btnRedo.Enabled = designer1.CanRedo;
-		}
+        #region Functions
+        private void Edit_UpdateUndoRedoEnable()
+        {
+            mnuUndo.Enabled = designer1.CanUndo;
+            btnUndo.Enabled = designer1.CanUndo;
+            mnuRedo.Enabled = designer1.CanRedo;
+            btnRedo.Enabled = designer1.CanRedo;
+        }
 
-		private void Edit_Undo()
-		{
-			if (designer1.CanUndo)
-				designer1.Undo();
-			
-			Edit_UpdateUndoRedoEnable();
-		}
+        private void Edit_Undo()
+        {
+            if (designer1.CanUndo)
+                designer1.Undo();
 
-		private void Edit_Redo()
-		{
-			if (designer1.CanRedo)
-				designer1.Redo();
+            Edit_UpdateUndoRedoEnable();
+        }
 
-			Edit_UpdateUndoRedoEnable();
-		}
+        private void Edit_Redo()
+        {
+            if (designer1.CanRedo)
+                designer1.Redo();
 
-		private void Action_None()
-		{
-			mnuSize.Checked = false;
-			mnuAdd.Checked = false;
-			mnuDelete.Checked = false;
-			mnuConnect.Checked = false;
+            Edit_UpdateUndoRedoEnable();
+        }
 
-			btnSize.Pushed = false;
-			btnAdd.Pushed = false;
-			btnDelete.Pushed = false;
-			btnConnect.Pushed = false;
+        private void Action_None()
+        {
+            mnuSize.Checked = false;
+            mnuAdd.Checked = false;
+            mnuDelete.Checked = false;
+            mnuConnect.Checked = false;
 
-			mnuRectangle.Checked = false;
-			mnuTbRectangle.Checked = false;
-			mnuElipse.Checked = false;
-			mnuTbElipse.Checked = false;
-			mnuRectangleNode.Checked = false;
-			mnuTbRectangleNode.Checked = false;
-			mnuElipseNode.Checked = false;
-			mnuTbElipseNode.Checked = false;
+            btnSize.Pushed = false;
+            btnAdd.Pushed = false;
+            btnDelete.Pushed = false;
+            btnConnect.Pushed = false;
 
-            
-		}
+            mnuRectangle.Checked = false;
+            mnuTbRectangle.Checked = false;
+            mnuElipse.Checked = false;
+            mnuTbElipse.Checked = false;
+            mnuRectangleNode.Checked = false;
+            mnuTbRectangleNode.Checked = false;
+            mnuElipseNode.Checked = false;
+            mnuTbElipseNode.Checked = false;
 
-		private void Action_Size()
-		{
-			Action_None();
-			mnuSize.Checked = true;
-			btnSize.Pushed = true;
-			if (changeDocumentProp)
-				designer1.Document.Action = DesignerAction.Select;
-		}
 
-		private void Action_Add(ElementType e)
-		{
-			Action_None();
-			btnAdd.Pushed = true;
-			switch(e)
-			{
-				case ElementType.Rectangle:
-					mnuRectangle.Checked = true;
-					mnuTbRectangle.Checked = true;
-					break;
-				case ElementType.Elipse:
-					mnuElipse.Checked = true;
-					mnuTbElipse.Checked = true;
-					break;
-				case ElementType.RectangleNode:
-					mnuRectangleNode.Checked = true;
-					mnuTbRectangleNode.Checked = true;
-					break;
-				case ElementType.ElipseNode:
-					mnuElipseNode.Checked = true;
-					mnuTbElipseNode.Checked = true;
-					break;
+        }
+
+        private void Action_Size()
+        {
+            Action_None();
+            mnuSize.Checked = true;
+            btnSize.Pushed = true;
+            if (changeDocumentProp)
+                designer1.Document.Action = DesignerAction.Select;
+        }
+
+        private void Action_Add(ElementType e)
+        {
+            Action_None();
+            btnAdd.Pushed = true;
+            switch (e)
+            {
+                case ElementType.Rectangle:
+                    mnuRectangle.Checked = true;
+                    mnuTbRectangle.Checked = true;
+                    break;
+                case ElementType.Elipse:
+                    mnuElipse.Checked = true;
+                    mnuTbElipse.Checked = true;
+                    break;
+                case ElementType.RectangleNode:
+                    mnuRectangleNode.Checked = true;
+                    mnuTbRectangleNode.Checked = true;
+                    break;
+                case ElementType.ElipseNode:
+                    mnuElipseNode.Checked = true;
+                    mnuTbElipseNode.Checked = true;
+                    break;
 
             }
-			
-			if (changeDocumentProp)
-			{
-				designer1.Document.Action = DesignerAction.Add;
-				designer1.Document.ElementType = e;
-			}
-		}
 
-		private void Action_Delete()
-		{
-			Action_None();
-			mnuDelete.Checked = true;
-			btnDelete.Pushed = true;
-			if (changeDocumentProp)
-				designer1.Document.DeleteSelectedElements();
-			Action_None();
-		}
+            if (changeDocumentProp)
+            {
+                designer1.Document.Action = DesignerAction.Add;
+                designer1.Document.ElementType = e;
+            }
+        }
 
-		private void Action_Connect()
-		{
-			Action_None();
-			mnuConnect.Checked = true;
-			btnConnect.Pushed = true;
-			if (changeDocumentProp)
-				designer1.Document.Action = DesignerAction.Connect;
-		}
+        private void Action_Delete()
+        {
+            Action_None();
+            mnuDelete.Checked = true;
+            btnDelete.Pushed = true;
+            if (changeDocumentProp)
+                designer1.Document.DeleteSelectedElements();
+            Action_None();
+        }
 
-		private void Action_Connector(LinkType lt)
-		{
-			Action_None();
-			switch(lt)
-			{
-				case LinkType.Straight:
-					mnuTbStraightLink.Checked = true;
-					mnuTbRightAngleLink.Checked = false;
-					break;
-				case LinkType.RightAngle:
-					mnuTbStraightLink.Checked = false;
-					mnuTbRightAngleLink.Checked = true;
-					break;
-			}
-			designer1.Document.LinkType = lt;
-			Action_Connect();
-		}
+        private void Action_Connect()
+        {
+            Action_None();
+            mnuConnect.Checked = true;
+            btnConnect.Pushed = true;
+            if (changeDocumentProp)
+                designer1.Document.Action = DesignerAction.Connect;
+        }
 
-		private void Action_Zoom(float zoom)
-		{
-			designer1.Document.Zoom = zoom;
-		}
-        public string  FileName { get; set; }
+        private void Action_Connector(LinkType lt)
+        {
+            Action_None();
+            switch (lt)
+            {
+                case LinkType.Straight:
+                    mnuTbStraightLink.Checked = true;
+                    mnuTbRightAngleLink.Checked = false;
+                    break;
+                case LinkType.RightAngle:
+                    mnuTbStraightLink.Checked = false;
+                    mnuTbRightAngleLink.Checked = true;
+                    break;
+            }
+            designer1.Document.LinkType = lt;
+            Action_Connect();
+        }
+
+        private void Action_Zoom(float zoom)
+        {
+            designer1.Document.Zoom = zoom;
+        }
+        public string FileName { get; set; }
         private void File_Open()
-		{
+        {
 #if ORG_CODE
             openFileDialog1.FileName = FileName;
             openFileDialog1.Filter = "Design(*.dgn)|*.dgn|All(*.*)|*.*";
@@ -1115,10 +1116,10 @@ namespace Dalssoft.TestForm
                 designer1.Document.Background = newImage;
             }
 #endif
-		}
+        }
 
-		private void File_Save()
-		{
+        private void File_Save()
+        {
             if (File.Exists(FileName))
             {
                 designer1.Save(FileName);
@@ -1130,7 +1131,7 @@ namespace Dalssoft.TestForm
             {
                 File_SaveAs();
             }
-		}
+        }
         private void File_SaveAs()
         {
             saveFileDialog1.FileName = FileName;
@@ -1147,174 +1148,174 @@ namespace Dalssoft.TestForm
         }
 
         private void Order_BringToFront()
-		{
-			if (designer1.Document.SelectedElements.Count == 1)
-			{
-				designer1.Document.BringToFrontElement(designer1.Document.SelectedElements[0]);
-				designer1.Refresh();
-			}
-		}
+        {
+            if (designer1.Document.SelectedElements.Count == 1)
+            {
+                designer1.Document.BringToFrontElement(designer1.Document.SelectedElements[0]);
+                designer1.Refresh();
+            }
+        }
 
-		private void Order_SendToBack()
-		{
-			if (designer1.Document.SelectedElements.Count == 1)
-			{
-				designer1.Document.SendToBackElement(designer1.Document.SelectedElements[0]);
-				designer1.Refresh();
-			}
-		}
+        private void Order_SendToBack()
+        {
+            if (designer1.Document.SelectedElements.Count == 1)
+            {
+                designer1.Document.SendToBackElement(designer1.Document.SelectedElements[0]);
+                designer1.Refresh();
+            }
+        }
 
-		private void Order_MoveUp()
-		{
-			if (designer1.Document.SelectedElements.Count == 1)
-			{
-				designer1.Document.MoveUpElement(designer1.Document.SelectedElements[0]);
-				designer1.Refresh();
-			}	
-		}
+        private void Order_MoveUp()
+        {
+            if (designer1.Document.SelectedElements.Count == 1)
+            {
+                designer1.Document.MoveUpElement(designer1.Document.SelectedElements[0]);
+                designer1.Refresh();
+            }
+        }
 
-		private void Order_MoveDown()
-		{
-			if (designer1.Document.SelectedElements.Count == 1)
-			{
-				designer1.Document.MoveDownElement(designer1.Document.SelectedElements[0]);
-				designer1.Refresh();
-			}	
-		}
+        private void Order_MoveDown()
+        {
+            if (designer1.Document.SelectedElements.Count == 1)
+            {
+                designer1.Document.MoveDownElement(designer1.Document.SelectedElements[0]);
+                designer1.Refresh();
+            }
+        }
 
-		private void Clipboard_Cut()
-		{
-			designer1.Cut();
-		}
+        private void Clipboard_Cut()
+        {
+            designer1.Cut();
+        }
 
-		private void Clipboard_Copy()
-		{
-			designer1.Copy();
-		}
+        private void Clipboard_Copy()
+        {
+            designer1.Copy();
+        }
 
-		private void Clipboard_Paste()
-		{
-			designer1.Paste();
-		}
+        private void Clipboard_Paste()
+        {
+            designer1.Paste();
+        }
 
-		#endregion
+        #endregion
 
-		#region Menu Events
-		private void mnuUndo_Click(object sender, System.EventArgs e)
-		{
-			Edit_Undo();
-		}
+        #region Menu Events
+        private void mnuUndo_Click(object sender, System.EventArgs e)
+        {
+            Edit_Undo();
+        }
 
-		private void mnuRedo_Click(object sender, System.EventArgs e)
-		{
-			Edit_Redo();
-		}
+        private void mnuRedo_Click(object sender, System.EventArgs e)
+        {
+            Edit_Redo();
+        }
 
-		private void mnuSize_Click(object sender, System.EventArgs e)
-		{
-			Action_Size();		
-		}
+        private void mnuSize_Click(object sender, System.EventArgs e)
+        {
+            Action_Size();
+        }
 
-		private void mnuRectangle_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.Rectangle);
-		}
+        private void mnuRectangle_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.Rectangle);
+        }
 
-		private void mnuElipse_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.Elipse);
-		}
+        private void mnuElipse_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.Elipse);
+        }
 
-		private void mnuRectangleNode_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.RectangleNode);
-		}
+        private void mnuRectangleNode_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.RectangleNode);
+        }
 
-		private void mnuElipseNode_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.ElipseNode);
-		}
+        private void mnuElipseNode_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.ElipseNode);
+        }
 
-		private void mnuDelete_Click(object sender, System.EventArgs e)
-		{
-			Action_Delete();
-		}
+        private void mnuDelete_Click(object sender, System.EventArgs e)
+        {
+            Action_Delete();
+        }
 
-		private void mnuCut_Click(object sender, System.EventArgs e)
-		{
-			Clipboard_Cut();
-		}
+        private void mnuCut_Click(object sender, System.EventArgs e)
+        {
+            Clipboard_Cut();
+        }
 
-		private void mnuCopy_Click(object sender, System.EventArgs e)
-		{
-			Clipboard_Copy();
-		}
+        private void mnuCopy_Click(object sender, System.EventArgs e)
+        {
+            Clipboard_Copy();
+        }
 
-		private void mnuPaste_Click(object sender, System.EventArgs e)
-		{
-			Clipboard_Paste();
-		}
+        private void mnuPaste_Click(object sender, System.EventArgs e)
+        {
+            Clipboard_Paste();
+        }
 
-		private void mnuConnect_Click(object sender, System.EventArgs e)
-		{
-			Action_Connect();
-		}
+        private void mnuConnect_Click(object sender, System.EventArgs e)
+        {
+            Action_Connect();
+        }
 
-		private void mnuBringToFront_Click(object sender, System.EventArgs e)
-		{
-			Order_BringToFront();
-		}
+        private void mnuBringToFront_Click(object sender, System.EventArgs e)
+        {
+            Order_BringToFront();
+        }
 
-		private void mnuSendToBack_Click(object sender, System.EventArgs e)
-		{
-			Order_SendToBack();
-		}
+        private void mnuSendToBack_Click(object sender, System.EventArgs e)
+        {
+            Order_SendToBack();
+        }
 
-		private void mnuMoveUp_Click(object sender, System.EventArgs e)
-		{
-			Order_MoveUp();
-		}
+        private void mnuMoveUp_Click(object sender, System.EventArgs e)
+        {
+            Order_MoveUp();
+        }
 
-		private void mnuMoveDown_Click(object sender, System.EventArgs e)
-		{
-			Order_MoveDown();
-		}
+        private void mnuMoveDown_Click(object sender, System.EventArgs e)
+        {
+            Order_MoveDown();
+        }
 
-		private void mnuOpen_Click(object sender, System.EventArgs e)
-		{
-			File_Open();
-		}
+        private void mnuOpen_Click(object sender, System.EventArgs e)
+        {
+            File_Open();
+        }
 
-		private void mnuSave_Click(object sender, System.EventArgs e)
-		{
-			File_Save();		
-		}
+        private void mnuSave_Click(object sender, System.EventArgs e)
+        {
+            File_Save();
+        }
 
-		private void mnuExit_Click(object sender, System.EventArgs e)
-		{
-			this.Close();
-		}
+        private void mnuExit_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
 
-		private void mnuAbout_Click(object sender, System.EventArgs e)
-		{
-			About about = new About();
-			about.ShowDialog(this);
-		}
-		#endregion
+        private void mnuAbout_Click(object sender, System.EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog(this);
+        }
+        #endregion
 
-		#region Toolbar Events
-		private void toolBar1_ButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e)
-		{
-			
-			string btn = (string) e.Button.Tag;
-			
+        #region Toolbar Events
+        private void toolBar1_ButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e)
+        {
+
+            string btn = (string)e.Button.Tag;
+
             switch (btn)
             {
                 case "Open": File_Open(); break;
                 case "Save": File_Save(); break;
 
                 case "Size": Action_Size(); break;
-			    //case  "Add":
+                //case  "Add":
                 case "Delete": Action_Delete(); break;
                 case "Connect": Action_Connect(); break;
 
@@ -1330,206 +1331,206 @@ namespace Dalssoft.TestForm
                 case "Copy": Clipboard_Copy(); break;
                 case "Paste": Clipboard_Paste(); break;
                 case "Rectangle": mnuTbRectangle_Click(null, null); break;
+            }
         }
-		}
 
-		private void mnuTbRectangle_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.Rectangle);
-		}
+        private void mnuTbRectangle_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.Rectangle);
+        }
 
-		private void mnuTbElipse_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.Elipse);
-		}
+        private void mnuTbElipse_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.Elipse);
+        }
 
-		private void mnuTbRectangleNode_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.RectangleNode);
-		}
+        private void mnuTbRectangleNode_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.RectangleNode);
+        }
 
-		private void mnuTbElipseNode_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.ElipseNode);
-		}
+        private void mnuTbElipseNode_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.ElipseNode);
+        }
 
-		private void TbCommentBox_Click(object sender, System.EventArgs e)
-		{
-			Action_Add(ElementType.CommentBox);
-		}
+        private void TbCommentBox_Click(object sender, System.EventArgs e)
+        {
+            Action_Add(ElementType.CommentBox);
+        }
 
-		private void mnuTbStraightLink_Click(object sender, System.EventArgs e)
-		{
-			Action_Connector(LinkType.Straight);
-		}
+        private void mnuTbStraightLink_Click(object sender, System.EventArgs e)
+        {
+            Action_Connector(LinkType.Straight);
+        }
 
-		private void mnuTbRightAngleLink_Click(object sender, System.EventArgs e)
-		{
-			Action_Connector(LinkType.RightAngle);
-		}
+        private void mnuTbRightAngleLink_Click(object sender, System.EventArgs e)
+        {
+            Action_Connector(LinkType.RightAngle);
+        }
 
-		#endregion
+        #endregion
 
-		private void Form1_Load(object sender, System.EventArgs e)
-		{
-			Edit_UpdateUndoRedoEnable();
-			
-			//Events
-			designer1.Document.PropertyChanged+=new EventHandler(Document_PropertyChanged);
-		}
+        private void Form1_Load(object sender, System.EventArgs e)
+        {
+            Edit_UpdateUndoRedoEnable();
 
-		private void Document_PropertyChanged(object sender, EventArgs e)
-		{
-			changeDocumentProp = false;
+            //Events
+            designer1.Document.PropertyChanged += new EventHandler(Document_PropertyChanged);
+        }
 
-			Action_None();
+        private void Document_PropertyChanged(object sender, EventArgs e)
+        {
+            changeDocumentProp = false;
 
-			switch(designer1.Document.Action)
-			{
-				case DesignerAction.Select:
-					Action_Size();
-					break;
-				case DesignerAction.Delete:
-					Action_Delete();
-					break;
-				case DesignerAction.Connect:
-					Action_Connect();
-					break;
-				case DesignerAction.Add:
-					Action_Add(designer1.Document.ElementType);
-					break;
-			}
+            Action_None();
 
-			Edit_UpdateUndoRedoEnable();
+            switch (designer1.Document.Action)
+            {
+                case DesignerAction.Select:
+                    Action_Size();
+                    break;
+                case DesignerAction.Delete:
+                    Action_Delete();
+                    break;
+                case DesignerAction.Connect:
+                    Action_Connect();
+                    break;
+                case DesignerAction.Add:
+                    Action_Add(designer1.Document.ElementType);
+                    break;
+            }
 
-			changeDocumentProp = true;
-		}
+            Edit_UpdateUndoRedoEnable();
 
-		private void mnuZoom_10_Click(object sender, System.EventArgs e)
-		{
-			Action_Zoom(0.1f);
-		}
+            changeDocumentProp = true;
+        }
 
-		private void mnuZoom_25_Click(object sender, System.EventArgs e)
-		{
-			Action_Zoom(0.25f);
-		}
+        private void mnuZoom_10_Click(object sender, System.EventArgs e)
+        {
+            Action_Zoom(0.1f);
+        }
 
-		private void mnuZoom_50_Click(object sender, System.EventArgs e)
-		{
-			Action_Zoom(0.5f);
-		}
+        private void mnuZoom_25_Click(object sender, System.EventArgs e)
+        {
+            Action_Zoom(0.25f);
+        }
 
-		private void mnuZoom_75_Click(object sender, System.EventArgs e)
-		{
-			Action_Zoom(0.75f);
-		}
+        private void mnuZoom_50_Click(object sender, System.EventArgs e)
+        {
+            Action_Zoom(0.5f);
+        }
 
-		private void mnuZoom_100_Click(object sender, System.EventArgs e)
-		{
-			Action_Zoom(1f);
-		}
+        private void mnuZoom_75_Click(object sender, System.EventArgs e)
+        {
+            Action_Zoom(0.75f);
+        }
 
-		private void mnuZoom_150_Click(object sender, System.EventArgs e)
-		{
-			Action_Zoom(1.5f);
-		}
+        private void mnuZoom_100_Click(object sender, System.EventArgs e)
+        {
+            Action_Zoom(1f);
+        }
 
-		private void mnuZoom_200_Click(object sender, System.EventArgs e)
-		{
-			Action_Zoom(2.0f);
-		}
+        private void mnuZoom_150_Click(object sender, System.EventArgs e)
+        {
+            Action_Zoom(1.5f);
+        }
 
-		private void mnuShowDebugLog_Click(object sender, System.EventArgs e)
-		{
-			mnuShowDebugLog.Checked = !mnuShowDebugLog.Checked;
-			txtLog.Visible = mnuShowDebugLog.Checked;
+        private void mnuZoom_200_Click(object sender, System.EventArgs e)
+        {
+            Action_Zoom(2.0f);
+        }
 
-		}
+        private void mnuShowDebugLog_Click(object sender, System.EventArgs e)
+        {
+            mnuShowDebugLog.Checked = !mnuShowDebugLog.Checked;
+            txtLog.Visible = mnuShowDebugLog.Checked;
 
-		#region Events Handling 
-		private void designer1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			AppendLog("designer1_MouseUp: {0}", e.ToString());
+        }
 
-			propertyGrid1.SelectedObject = null;
+        #region Events Handling
+        private void designer1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            AppendLog("designer1_MouseUp: {0}", e.ToString());
 
-			if (designer1.Document.SelectedElements.Count == 1)
-			{
-				propertyGrid1.SelectedObject = designer1.Document.SelectedElements[0];
-			}
-			else if (designer1.Document.SelectedElements.Count > 1)
-			{
-				propertyGrid1.SelectedObjects = designer1.Document.SelectedElements.GetArray();
-			}
-			else if (designer1.Document.SelectedElements.Count == 0)
-			{
-				propertyGrid1.SelectedObject = designer1.Document;
-			}
-		}
+            propertyGrid1.SelectedObject = null;
 
-		private void designer1_ElementClick(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
-		{
-			AppendLog("designer1_ElementClick: {0}", e.ToString());
-		}
+            if (designer1.Document.SelectedElements.Count == 1)
+            {
+                propertyGrid1.SelectedObject = designer1.Document.SelectedElements[0];
+            }
+            else if (designer1.Document.SelectedElements.Count > 1)
+            {
+                propertyGrid1.SelectedObjects = designer1.Document.SelectedElements.GetArray();
+            }
+            else if (designer1.Document.SelectedElements.Count == 0)
+            {
+                propertyGrid1.SelectedObject = designer1.Document;
+            }
+        }
 
-		private void designer1_ElementMouseDown(object sender, Dalssoft.DiagramNet.ElementMouseEventArgs e)
-		{
-			AppendLog("designer1_ElementMouseDown: {0}", e.ToString());
-		}
+        private void designer1_ElementClick(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
+        {
+            AppendLog("designer1_ElementClick: {0}", e.ToString());
+        }
 
-		private void designer1_ElementMouseUp(object sender, Dalssoft.DiagramNet.ElementMouseEventArgs e)
-		{
-			AppendLog("designer1_ElementMouseUp: {0}", e.ToString());
-		}
-		
-		private void designer1_ElementMoved(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
-		{
-			AppendLog("designer1_ElementMoved: {0}", e.ToString());
-		}
+        private void designer1_ElementMouseDown(object sender, Dalssoft.DiagramNet.ElementMouseEventArgs e)
+        {
+            AppendLog("designer1_ElementMouseDown: {0}", e.ToString());
+        }
 
-		private void designer1_ElementMoving(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
-		{
-			AppendLog("designer1_ElementMoving: {0}", e.ToString());
-		}
+        private void designer1_ElementMouseUp(object sender, Dalssoft.DiagramNet.ElementMouseEventArgs e)
+        {
+            AppendLog("designer1_ElementMouseUp: {0}", e.ToString());
+        }
 
-		private void designer1_ElementResized(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
-		{
-			AppendLog("designer1_ElementResized: {0}", e.ToString());
-		}
+        private void designer1_ElementMoved(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
+        {
+            AppendLog("designer1_ElementMoved: {0}", e.ToString());
+        }
 
-		private void designer1_ElementResizing(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
-		{
-			AppendLog("designer1_ElementResizing: {0}", e.ToString());
-		}
+        private void designer1_ElementMoving(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
+        {
+            AppendLog("designer1_ElementMoving: {0}", e.ToString());
+        }
 
-		private void designer1_ElementConnected(object sender, Dalssoft.DiagramNet.ElementConnectEventArgs e)
-		{
-			AppendLog("designer1_ElementConnected: {0}", e.ToString());
-		}
+        private void designer1_ElementResized(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
+        {
+            AppendLog("designer1_ElementResized: {0}", e.ToString());
+        }
 
-		private void designer1_ElementConnecting(object sender, Dalssoft.DiagramNet.ElementConnectEventArgs e)
-		{
-			AppendLog("designer1_ElementConnecting: {0}", e.ToString());
-		}
+        private void designer1_ElementResizing(object sender, Dalssoft.DiagramNet.ElementEventArgs e)
+        {
+            AppendLog("designer1_ElementResizing: {0}", e.ToString());
+        }
 
-		private void designer1_ElementSelection(object sender, Dalssoft.DiagramNet.ElementSelectionEventArgs e)
-		{
-			AppendLog("designer1_ElementSelection: {0}", e.ToString());
-		}
+        private void designer1_ElementConnected(object sender, Dalssoft.DiagramNet.ElementConnectEventArgs e)
+        {
+            AppendLog("designer1_ElementConnected: {0}", e.ToString());
+        }
 
-		#endregion
+        private void designer1_ElementConnecting(object sender, Dalssoft.DiagramNet.ElementConnectEventArgs e)
+        {
+            AppendLog("designer1_ElementConnecting: {0}", e.ToString());
+        }
 
-		private void AppendLog(string log)
-		{
-			AppendLog(log, "");
-		}
+        private void designer1_ElementSelection(object sender, Dalssoft.DiagramNet.ElementSelectionEventArgs e)
+        {
+            AppendLog("designer1_ElementSelection: {0}", e.ToString());
+        }
 
-		private void AppendLog(string log, params object[] args)
-		{
-			if (mnuShowDebugLog.Checked)
-				txtLog.AppendText(String.Format(log, args) + "\r\n");
-		}
+        #endregion
+
+        private void AppendLog(string log)
+        {
+            AppendLog(log, "");
+        }
+
+        private void AppendLog(string log, params object[] args)
+        {
+            if (mnuShowDebugLog.Checked)
+                txtLog.AppendText(String.Format(log, args) + "\r\n");
+        }
 
         private void menuSaveas_Click(object sender, EventArgs e)
         {
@@ -1545,8 +1546,37 @@ namespace Dalssoft.TestForm
         {
             if (ctrlConsole.IsProcessRunning == false)
             {
-                ctrlConsole.StartProcess("cmd", null);
+                // -crop 40x30+40+30
+                //ctrlConsole.StartProcess("cmd", "");
+                //ctrlConsole.WriteInput(@"E:\yfeng\Study\AI\Tools\bin\ImageMagick\convert.exe E:\yfeng\Study\AI\SmartAI\TestForm\bin\Debug\Metro.png  -crop 40x30+40+30 E:\yfeng\Study\AI\SmartAI\TestForm\bin\Debug\Metro_Crop.png", Color.Red, true);
+                //ctrlConsole.WriteInput("\r\n", Color.Red, true);
+                //ctrlConsole.StartProcess(@"E:\yfeng\Study\AI\Tools\bin\ImageMagick\convert.exe",
+                //    @"E:\yfeng\Study\AI\SmartAI\TestForm\bin\Debug\Metro.png  -crop 800x800+100+100 E:\yfeng\Study\AI\SmartAI\TestForm\bin\Debug\Metro_Crop.png");                
             }
+
+            //
+            string curPath = Application.StartupPath;
+            Process proc = new Process();
+            proc.StartInfo.FileName = curPath + @"\convert.exe";
+            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.WorkingDirectory = curPath;
+            proc.StartInfo.Arguments = @"Metro.png  -crop 800x800+300+300 Metro_Crop.png";
+            
+            try
+            {
+                proc.Start();
+                proc.WaitForExit();
+                Console.WriteLine("Process Exit: " + proc.ExitCode);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                txtLog.Text += "\r\n" + ex.ToString() + "\r\n";
+            }
+            proc.Dispose();
+            proc = null;
         }
     }
 }
