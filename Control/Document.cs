@@ -44,6 +44,8 @@ namespace Dalssoft.DiagramNet
 		//Events
 		private bool canFireEvents = true;
 
+        private string m_bgImgFileName = "";
+
 		public Document(){}
 
 		#region Add Methods
@@ -648,6 +650,19 @@ namespace Dalssoft.DiagramNet
 				OnAppearancePropertyChanged(new EventArgs());
 			}
 		}
+
+        public string BackgroundImgFileName
+        {
+            get
+            {
+                return m_bgImgFileName;
+            }
+            set
+            {
+                m_bgImgFileName = value;
+                OnPropertyChanged(new EventArgs());
+            }
+        }
 
         Image __Background = null;
         [System.ComponentModel.DefaultValue(null)]

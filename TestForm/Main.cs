@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using Dalssoft.DiagramNet;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Dalssoft.TestForm
 {
@@ -106,6 +107,8 @@ namespace Dalssoft.TestForm
         private ConsoleControl.ConsoleControl ctrlConsole;
         private MenuItem mnuRunConsole;
         private System.ComponentModel.IContainer components;
+
+        private List<BaseElement> m_rcList = new List<BaseElement>();
 
         public Form1()
         {
@@ -1112,8 +1115,18 @@ namespace Dalssoft.TestForm
             if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 string fName = openFileDialog1.FileName;
-                Image newImage = Image.FromFile(fName);
-                designer1.Document.Background = newImage;
+                Image newImage = null;
+                try
+                {
+                    newImage = Image.FromFile(fName);
+                    designer1.Document.Background = newImage;
+                    designer1.Document.BackgroundImgFileName = fName;
+                }
+                catch (System.Exception ex)
+                {
+                    txtLog.Text += "\r\n" + ex.ToString() + "\r\n";
+                    Console.WriteLine(ex.ToString());
+                }
             }
 #endif
         }
@@ -1544,39 +1557,94 @@ namespace Dalssoft.TestForm
 
         private void mnuRunConsole_Click(object sender, EventArgs e)
         {
-            if (ctrlConsole.IsProcessRunning == false)
+            // Get all element locations
+            ElementCollection ec = designer1.Document.Elements;
+            foreach (BaseElement item in ec)
             {
-                // -crop 40x30+40+30
-                //ctrlConsole.StartProcess("cmd", "");
-                //ctrlConsole.WriteInput(@"E:\yfeng\Study\AI\Tools\bin\ImageMagick\convert.exe E:\yfeng\Study\AI\SmartAI\TestForm\bin\Debug\Metro.png  -crop 40x30+40+30 E:\yfeng\Study\AI\SmartAI\TestForm\bin\Debug\Metro_Crop.png", Color.Red, true);
-                //ctrlConsole.WriteInput("\r\n", Color.Red, true);
-                //ctrlConsole.StartProcess(@"E:\yfeng\Study\AI\Tools\bin\ImageMagick\convert.exe",
-                //    @"E:\yfeng\Study\AI\SmartAI\TestForm\bin\Debug\Metro.png  -crop 800x800+100+100 E:\yfeng\Study\AI\SmartAI\TestForm\bin\Debug\Metro_Crop.png");                
+                Type curT = item.GetType();
+                if (curT.Name == "RectangleElement")
+                {
+                    m_rcList.Add(item);
+                }
+                Console.WriteLine("Type: " + curT.ToString());
             }
+            //------------------------------------------------------------
 
             //
             string curPath = Application.StartupPath;
-            Process proc = new Process();
-            proc.StartInfo.FileName = curPath + @"\convert.exe";
-            proc.StartInfo.UseShellExecute = false;
-            proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            proc.StartInfo.CreateNoWindow = true;
-            proc.StartInfo.WorkingDirectory = curPath;
-            proc.StartInfo.Arguments = @"Metro.png  -crop 800x800+300+300 Metro_Crop.png";
-            
-            try
+            int i = 0;
+            foreach (BaseElement item in m_rcList)
             {
-                proc.Start();
-                proc.WaitForExit();
-                Console.WriteLine("Process Exit: " + proc.ExitCode);
+                Rectangle rc = item.GetRectangle();
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = curPath + @"\convert.exe";
+                    proc.StartInfo.UseShellExecute = false;
+                    proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                    proc.StartInfo.CreateNoWindow = true;
+                    proc.StartInfo.WorkingDirectory = curPath;
+                    String ps = String.Format("{0}   -crop {1}x{2}+{3}+{4} {5}_{6}.png",
+                        designer1.Document.BackgroundImgFileName,
+                        rc.Width, rc.Height, rc.Left, rc.Top,
+                        @"dst\crop", (i++) );
+                    
+                    proc.StartInfo.Arguments = ps;
+
+                    try
+                    {
+                        proc.Start();
+                        proc.WaitForExit();
+                        Console.WriteLine("Process Exit: " + proc.ExitCode);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                        txtLog.Text += "\r\n" + ex.ToString() + "\r\n";
+                    }
+                    proc.Dispose();
+                }
             }
-            catch (Exception ex)
+
+            //
+            i = 0;
+            foreach (BaseElement item in m_rcList)
             {
-                Console.WriteLine(ex.ToString());
-                txtLog.Text += "\r\n" + ex.ToString() + "\r\n";
+                Rectangle rc = item.GetRectangle();
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = curPath + @"\tesseract.exe";
+                    proc.StartInfo.UseShellExecute = false;
+                    proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                    proc.StartInfo.CreateNoWindow = true;
+                    proc.StartInfo.WorkingDirectory = curPath;
+                    proc.StartInfo.RedirectStandardOutput = true;
+                    proc.StartInfo.RedirectStandardError = true;
+                    String ps = String.Format("{0}_{1}.png stdout",@"dst\crop", (i++));
+
+                    proc.StartInfo.Arguments = ps;
+
+                    //convert dst\crop_0.png  -colorspace Gray -separate -average -threshold 60% -auto-level -adaptive-blur 2   -density 400 -quality 100  dst\result_0.png
+
+                    try
+                    {
+                        proc.Start();
+                        //* Read the output (or the error)
+                        string output = proc.StandardOutput.ReadToEnd();
+                        Console.WriteLine(output);
+                        string err = proc.StandardError.ReadToEnd();
+                        Console.WriteLine(err);
+                        proc.WaitForExit();
+                        Console.WriteLine("Process Exit: " + proc.ExitCode);
+                        txtLog.Text += "ps:  [" + output + "]";
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                        txtLog.Text += "\r\n" + ex.ToString() + "\r\n";
+                    }
+                    proc.Dispose();
+                }
             }
-            proc.Dispose();
-            proc = null;
         }
     }
 }
